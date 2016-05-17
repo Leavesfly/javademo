@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--自己定义的Spring中使用的xml模板 -->
+<!--因为这只是自己练习的DEMO，所以定义的肯定不够完善，只是使之先能简单的完成一些功能 如果要更丰富的话，可以定义更多规则的，比如每个类对象是不是单例的等等，这里就不写了 -->
+<!ELEMENT beans (bean*)>
+<!ELEMENT bean (property)>
+<!--property的子属性 要么是直接使用的值传递类型，此时，设置value属性的类型为#PCDATA类型 要么是需要指向其他引用的引用类型，此时，设置该元素为空元素, -->
+<!ELEMENT property (value|ref)>
+<!ELEMENT value (#PCDATA)>
+<!ELEMENT ref EMPTY>
+<!--设置bean的属性 每个bean必须有个ID属性，因为这个属性是唯一的表示这个bean，所以属性类型为ID，特征为#REQUIRED,每个bean还必须有class属性，每个类可以有多个对象，所以此属性不唯一，但是必须 -->
+<!ATTLIST bean id ID #REQUIRED>
+<!ATTLIST bean class CDATA #REQUIRED>
+
+<!--设置每个property的属性 -->
+<!ATTLIST property name CDATA #REQUIRED>
+
+<!--设置ref元素的id属性类型为IDREF,值类型为#REQUIRED 通过让它指向别的Bean的ID来完成完成引用(依赖就是这样的注入) -->
+<!ATTLIST ref id IDREF #REQUIRED>

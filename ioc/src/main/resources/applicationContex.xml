@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE beans SYSTEM "springConfig.dtd">
+<!-- 此配置文件来用配置对象之间的关系，以及每一个对象的内容 -->
+<beans>
+	<bean id="dog" type="test.Dog">
+		<property name="name">
+			<value>WanWan</value>
+		</property>
+	</bean>
+
+	<bean id="yf" type="test.Person">
+		<property name="pet">
+			<ref id="dog" />
+		</property>
+	</bean>
+
+</beans>
